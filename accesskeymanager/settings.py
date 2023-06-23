@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     #local apps
     'accounts',
     'keys',
+    
+    # Third party apps
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
