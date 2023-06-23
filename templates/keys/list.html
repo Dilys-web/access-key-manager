@@ -4,6 +4,9 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        {% if user.is_staff %}
+        <th>School Email</th>
+        {% endif %}
         <th>Access Key</th>
         <th>Status</th>
         <th>Date of Procurement</th>
@@ -16,12 +19,15 @@
     <tbody>
       {% for access_key in access_keys %}
       <tr>
+        {% if user.is_staff%}
+        <td>{{access_key.user.email}}</td>
+        {% endif %}
         <td>{{ access_key.key }}</td>
         <td>{{ access_key.status }}</td>
         <td>{{ access_key.procurement_date }}</td>
         <td>{{ access_key.expiry_date }}</td>
         {% if user.is_staff and access_key.status == "active" %}
-          <td><a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to revoke this access key?')">Revoke</a></td>
+          <td><a href="{% url 'revoke_key' access_key.pk %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to revoke this access key?')">Revoke</a></td>
         {% endif %}
       </tr>
       {% endfor %}
