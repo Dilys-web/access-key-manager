@@ -1,5 +1,5 @@
 # Project Description
-A digital platform for document distribution business, allowing users to remotely access and download various documents such as wedding cards and admission forms.
+  A web application designed to facilitate the monetization of a multitenant school management platform by offering a key-based access system. It enables School IT Personnel to purchase and manage access keys, while providing Micro-Focus Admins with the ability to monitor and revoke keys, and integrates with school software through an endpoint.
 
 
 <h2>Setup & Run</h2>
