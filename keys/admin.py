@@ -14,9 +14,6 @@ class AccessKeyAdmin(admin.ModelAdmin):
     def mark_as_revoked(self, request, queryset):
         queryset.update(status="revoked")
 
-    def mark_as_active(self, request, queryset):
-        queryset.update(status="active")
-
     mark_as_expired.short_description = "Mark selected access keys as expired"
     mark_as_revoked.short_description = "Mark selected access keys as revoked"
     mark_as_active.short_description = "Mark selected access keys as active"
