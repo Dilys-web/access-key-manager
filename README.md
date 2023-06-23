@@ -23,7 +23,7 @@ To run the application, please follow the guidlines below
   
   ### Move into project folder
    ```
-   cd file-server
+   cd access-key-manager
    ```
   ### create a virtual environment and activate it
   ```
