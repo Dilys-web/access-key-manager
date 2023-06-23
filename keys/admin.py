@@ -16,6 +16,5 @@ class AccessKeyAdmin(admin.ModelAdmin):
 
     mark_as_expired.short_description = "Mark selected access keys as expired"
     mark_as_revoked.short_description = "Mark selected access keys as revoked"
-    mark_as_active.short_description = "Mark selected access keys as active"
 
 admin.site.register(AccessKey, AccessKeyAdmin)
