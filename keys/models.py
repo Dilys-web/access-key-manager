@@ -29,7 +29,7 @@ class AccessKey(models.Model):
         # Check if the user already has an active key
         super().clean(*args, **kwargs)
         active_keys = AccessKey.objects.filter(user=self.user, status="active")
-        if self.status == "active" and self.pk is None and active_keys.exists():
+        if self.status == "active" and active_keys.exists():
             raise ValidationError("A user can have only one active key at a time.")
 
     def __str__(self):
