@@ -5,10 +5,12 @@ from django.db import models
 
 from accounts.models import User
 
+# fucntion to set fixed expiry date
 def get_default_expiry_date():
     return timezone.now() + timezone.timedelta(days=365)
 
 class AccessKey(models.Model):
+    # Access key status
     STATUS = [
         ("active", "Active"),
         ("expired", "Expired"),
@@ -16,7 +18,7 @@ class AccessKey(models.Model):
     ]
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    key = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    key = models.UUIDField(default=uuid.uuid4, editable=False)
     status = models.CharField(max_length=20, choices=STATUS, default="active")
     procurement_date = models.DateTimeField(auto_now_add=True)
     # asssuming a key expires after a year
