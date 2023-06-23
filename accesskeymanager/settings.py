@@ -140,4 +140,6 @@ EMAIL_HOST_PASSWORD = 'odpkmzdoihydjulc'
 AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = [
-    'accounts.auth.EmailAuthBackend']
+    'accounts.auth.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    ]
