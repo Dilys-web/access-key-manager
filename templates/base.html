@@ -33,7 +33,11 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" id="dropdownUser1" data-bs-toggle="dropdown"
                            aria-expanded="false">
+                          {% if user.school_name %}
                             {{ user.school_name }}
+                          {% else %}
+                            {{ user.email }}
+                          {% endif %}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>

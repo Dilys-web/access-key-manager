@@ -35,9 +35,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        if self.school_name:
-            return self.school_name
-        return self.email
+        return self.school_name or self.email
     
     def generate_verification_code(self):
         chars = string.ascii_letters + string.digits
