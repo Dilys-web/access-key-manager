@@ -8,10 +8,14 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.response import Response
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .serializers import AccessKeySerializer
 from .models import AccessKey
 
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 
 @login_required
 def access_keys_list(request):
@@ -19,10 +23,23 @@ def access_keys_list(request):
         access_keys = AccessKey.objects.all()
     else:
         access_keys = AccessKey.objects.filter(user=request.user)
+    
+    paginator = Paginator(access_keys.order_by("status"), per_page=10)  # Set the number of access keys per page
+    
+    page_number = request.GET.get('page')  # Get the current page number from the request query parameters
+    try:
+        keys = paginator.get_page(page_number)  # Get the Page object for the current page number
+    except PageNotAnInteger:
+        keys = paginator.get_page(1)  # If page number is not an integer, show the first page
+    except EmptyPage:
+        keys = paginator.get_page(paginator.num_pages)  # If page number is out of range, show the last page
+    
     context = {
-        "access_keys": access_keys.order_by("status")
+        "access_keys": keys,
+        "num_keys": access_keys.count(),
     }
     return render(request, "keys/list.html", context)
+
 
 @login_required
 def request_access_key(request):

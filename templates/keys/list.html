@@ -2,9 +2,11 @@
 
 {% block content %}
   <table class="table table-striped">
+    <h3 class="text-center text-primary">Total Number of Keys: {{ num_keys }}</h3>
     <thead>
       <tr>
         {% if user.is_staff %}
+        <th>School Name </th>
         <th>School Email</th>
         {% endif %}
         <th>Access Key</th>
@@ -19,8 +21,9 @@
     <tbody>
       {% for access_key in access_keys %}
       <tr>
-        {% if user.is_staff%}
-        <td>{{access_key.user.email}}</td>
+        {% if user.is_staff %}
+        <td>{{ access_key.user.school_name }}</td>
+        <td>{{ access_key.user.email }}</td>
         {% endif %}
         <td>{{ access_key.key }}</td>
         <td>{{ access_key.status }}</td>
@@ -33,5 +36,43 @@
       {% endfor %}
     </tbody>
   </table>
-</div>
+
+  <!-- Pagination links -->
+  {% if access_keys.has_other_pages %}
+    <nav aria-label="Access Key pagination">
+      <ul class="pagination justify-content-center">
+        {% if access_keys.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ access_keys.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+          </li>
+        {% endif %}
+
+        {% for num in access_keys.paginator.page_range %}
+          {% if access_keys.number == num %}
+            <li class="page-item active">
+              <span class="page-link">{{ num }}</span>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if access_keys.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ access_keys.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Next</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
 {% endblock %}

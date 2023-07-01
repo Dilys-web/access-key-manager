@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w6jpjv8$a8^77=fc*tqqh8+i2cl9-$%6yfgg2#eoznfy*6wthx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['dilys22.pythonanywhere.com']
+ALLOWED_HOSTS = ['*','dilys22.pythonanywhere.com']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     
     # Third party apps
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

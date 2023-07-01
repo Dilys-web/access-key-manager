@@ -9,6 +9,13 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="mb-3">
+                            <label for="id_school_name" class="form-lable">School name:</label>
+                            <input type="text" name="school_name" autofocus required class="form-control" maxlength="200" required id="id_school_name">
+                            {% if form.errors.school_name %}
+                                <div class="text-danger">{{ form.errors.school_name }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
                             <label for="id_email" class="form-label">Email:</label>
                             <input type="email" name="email" autofocus required class="form-control" id="id_email">
                             {% if form.errors.email %}
@@ -37,3 +44,5 @@
         </div>
     </div>
 {% endblock %}
+
+    

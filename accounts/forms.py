@@ -10,4 +10,4 @@ class AccountCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = get_user_model()
-        fields = ("email", "password1", "password2")
+        fields = ( "school_name","email","password1", "password2")
